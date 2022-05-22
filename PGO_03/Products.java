@@ -6,8 +6,8 @@ public class Products {
     private ProductType productType;
     private double price;
     private int quantity;
-    private Storage storage;
     private boolean isAvailable;
+    private Storage storage;
 
     public Products(String name, ProductType productType, double price, int quantity, Storage storage) {
         setName(name);
@@ -25,26 +25,74 @@ public class Products {
         if (name == null || name.isEmpty()) {
             throw new RuntimeException("Name cannot be empty");
         }
+        this.name = name;
+    }
 
     public ProductType getProductType() {
         return productType;
     }
 
+    public void setProductType(ProductType productType){
+            if (productType == null) {
+                throw new RuntimeException("Product type cannot be empty");
+
+            }
+            this.productType = productType;
+        }
+
     public double getPrice() {
         return price;
+    }
+
+    public void setPrice(double price) {
+        if (price < 0) {
+            throw new RuntimeException("Price cannot be under 0");
+        }
+        this.price = price;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
+    public void setQuantity(int quantity) {
+        if (quantity < 0) {
+            throw new RuntimeException("Quantity cannot be under 0");
+        }
+        this.quantity = quantity;
+    }
+
+    public boolean isAvailable() {
+        if (getQuantity() >=1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     public Storage getStorage() {
         return storage;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
-    }
+    public void setStorage(Storage storage) {
+        this.storage = storage;
 }
 
-}
+    public void sell(){
+        if (isAvailable()) {
+            this.quantity--; }
+        else {
+            throw new RuntimeException("Product is not available");
+        }
+    }
+    public void increaseQuantity(int quantity){
+        if (quantity<=0) {
+            throw new RuntimeException("Quantity cannot be 0 and under");
+            }
+            this.quantity = quantity;
+        }
+    }
+
+
+

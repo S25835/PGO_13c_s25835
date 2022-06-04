@@ -89,35 +89,41 @@ public class Person {
             throw new RuntimeException("You have nothing in your cart");
         }
 
-            if (moneyOnCard < this.currentCart.totalPrice()) {
-                throw new RuntimeException("You do not have enough money on card");
-            }
-            moneyOnCard = this.moneyOnCard - this.currentCart.totalPrice();
-            this.currentCart.sell();
-            this.historyCart.add(this.currentCart);
+        if (moneyOnCard < this.currentCart.totalPrice()) {
+            throw new RuntimeException("You do not have enough money on card");
         }
+        moneyOnCard = this.moneyOnCard - this.currentCart.totalPrice();
+        this.currentCart.sell();
+        this.historyCart.add(this.currentCart);
+    }
 
 
     public void BuyByCash() {
         if (currentCart == null) {
             throw new RuntimeException("You have nothing in your cart");
         }
-            if (moneyInCash < this.currentCart.totalPrice()) {
-                throw new RuntimeException("You do not have enough money in cash");
+        if (moneyInCash < this.currentCart.totalPrice()) {
+            throw new RuntimeException("You do not have enough money in cash");
 
-            }
-            moneyInCash = this.moneyInCash - this.currentCart.totalPrice();
-            this.currentCart.sell();
-            this.historyCart.add(this.currentCart);
-            }
+        }
+        moneyInCash = this.moneyInCash - this.currentCart.totalPrice();
+        this.currentCart.sell();
+        this.historyCart.add(this.currentCart);
+    }
 
     public void addToCart(Products product) {
         if (this.currentCart == null) {
             throw new RuntimeException("No active cart");
         }
         this.currentCart.getProducts().add(product);
-        }
-
     }
 
+    public int getHistoryCartSize() {
+        if (this.historyCart == null) {
+            return 0;
+        } else {
+            return historyCart.size();
+        }
+    }
 }
+

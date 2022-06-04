@@ -6,7 +6,8 @@ import java.util.Set;
 
 
 public class ShoppingCart {
-    private int id = 0;
+    private static long idCount=0;
+    private long ID=idCount++;
     private ArrayList<Products> products = new ArrayList<>();
 
 
@@ -26,12 +27,23 @@ public class ShoppingCart {
                 chosenStorages.add(products.getStorage());
             }
         }
+        for (Storage storage : chosenStorages) {
+            deliveryTime += storage.getDeliveryTime();
+        }
+        return deliveryTime;
     }
-
-}
 
     public ArrayList<Products> getProducts() {
         return products;
+    }
+
+    public void sell() {
+        for (Products product : this.products) {
+            product.sell();
+        }
+    }
+    public long getId() {
+        return ID;
     }
 }
 

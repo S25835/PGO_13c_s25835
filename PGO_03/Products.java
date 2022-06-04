@@ -17,6 +17,13 @@ public class Products {
         setStorage(storage);
     }
 
+    public Products(String name, ProductType productType, double price, int quantity) {
+        setName(name);
+        setProductType(productType);
+        setPrice(price);
+        setQuantity(quantity);
+    }
+
     public String getName() {
         return name;
     }
@@ -80,19 +87,20 @@ public class Products {
 }
 
     public void sell(){
-        if (isAvailable()) {
-            this.quantity--; }
-        else {
+        if (!isAvailable()) {
             throw new RuntimeException("Product is not available");
         }
-    }
+        else
+            quantity--;
+        }
+
     public void increaseQuantity(int quantity){
         if (quantity<=0) {
             throw new RuntimeException("Quantity cannot be 0 and under");
             }
-            this.quantity = quantity;
+            this.quantity += quantity;
         }
-    }
+}
 
 
 

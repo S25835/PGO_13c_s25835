@@ -10,7 +10,7 @@ public class Eliksir {
     List<Ingredient> ingredients;
     private Liquid catalyst;
 
-    public Eliksir(String name, Liquid catalyst) {
+    public Eliksir(String name) {
         this.name = name;
         this.isCreated = false;
         ingredients = new ArrayList<>();

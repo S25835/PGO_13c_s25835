@@ -5,20 +5,19 @@ import java.util.List;
 
 public class Eliksir {
     private String name;
-    private boolean isCreated;
+    private boolean isCreated=false;
     private int power;
     List<Ingredient> ingredients;
     private Liquid catalyst;
 
     public Eliksir(String name) {
         this.name = name;
-        this.isCreated = false;
         ingredients = new ArrayList<>();
         this.catalyst = catalyst;
     }
 
     public void addIngredient(Ingredient ingredient) {
-        if(!isCreated) {
+        if (!isCreated) {
             ingredients.add(ingredient);
         }
     }
@@ -35,8 +34,17 @@ public class Eliksir {
         }
     }
 
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new Error("Name cannot be empty.");
+        } else {
+            this.name = name;
+        }
     }
 
     public boolean isCreated() {
@@ -44,9 +52,11 @@ public class Eliksir {
     }
 
     public int getPower() {
-        if(isCreated)
+        if (!isCreated) {
+            throw new Error("Elixir not ready, don't have power yet.");
+        } else {
             return power;
-        throw new Error("Elixir not ready, don't have power yet.");
+        }
     }
 
     public List<Ingredient> getIngredients() {
@@ -57,11 +67,17 @@ public class Eliksir {
         return catalyst;
     }
 
-    public void create() {
+    public void create()  {
         isCreated = true;
-        System.out.println(ingredients.stream().reduce(0,(subtotal, element) -> subtotal + element.getBaseReagent(), Integer::sum));
-        System.out.println(catalyst.getReagent());
-        power = ingredients.stream().reduce(0,(subtotal, element) -> subtotal + element.getBaseReagent(), Integer::sum) / catalyst.getReagent();
+        for (Ingredient ingredient: ingredients) {
+            power += ingredient.getReagent();
+        }
+        power=power/catalyst.getReagent();
+    }
     }
 
-}
+
+
+
+
+

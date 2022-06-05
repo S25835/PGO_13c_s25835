@@ -5,11 +5,15 @@ public class Crystal extends Mineral {
 
     public Crystal(String name, int baseReagent, int power, int magicPower) {
         super(name, baseReagent, power);
-        this.magicPower = magicPower;
+        setMagicPower(magicPower);
     }
 
     public int getMagicPower() {
         return magicPower;
+    }
+
+    public void setMagicPower(int magicPower) {
+        this.magicPower = magicPower;
     }
 
     @Override

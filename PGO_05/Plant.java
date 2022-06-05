@@ -5,11 +5,15 @@ public class Plant extends Ingredient {
 
     public Plant(String name, int baseReagent, int toxity) {
         super(name, baseReagent);
-        this.toxity = toxity;
+        setToxity(toxity);
     }
 
     public int getToxity() {
         return toxity;
+    }
+
+    public void setToxity(int toxity) {
+        this.toxity = toxity;
     }
 
     @Override

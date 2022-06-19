@@ -30,7 +30,9 @@ public class Main {
 
 
             /*
-            Można przeciążyć metodę f(double x). Pozwoli to na użycie metody bez tworzenia klasy.
+            
+            Klasa implementuje metodę, dlatego można przeciążyć metodę f(double x).
+            Pozwoli to na użycie metody bez tworzenia klasy
 
          Fun function = new Fun() {
 
